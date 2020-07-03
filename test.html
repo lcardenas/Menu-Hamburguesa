@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notas</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hamburgers/1.1.3/hamburgers.min.css">
+</head>
+
+<style>
+  /********* Reseteo  **************/
+  :root {
+    --main-font: sans-serif;
+    --font-size: 16px;
+    --main-color: #f7df1e;
+    --second-color: #222;
+    --main-modal-color: rgba(247, 222, 30, 0.85);
+    --second-modal-color: rgba(34, 34, 34, 0.85);
+    --container-width: 1200px;
+  }
+
+  html {
+    box-sizing: border-box;
+    font-family: var(--main-font);
+    font-size: var(--font-size);
+    scroll-behavior: smooth;
+  }
+
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+
+  body {
+    margin: 0;
+    overflow-x: hidden;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /********* Menú Hamburguesa  **********/
+  .header {
+    position: sticky;
+    top: 0;
+    padding: 1rem;
+    background-color: var(--main-color);
+    color: var(--second-color);
+  }
+
+  .header h1 {
+    margin: 0 auto;
+    text-align: center;
+  }
+
+
+  .section {
+    padding: 2rem;
+    padding-top: 4rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: var(--container-width);
+    min-height: 100vh;
+    text-align: center;
+  }
+
+  .panel {
+    position: fixed;
+    z-index: 998;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color: var(--second-modal-color);
+    transition: transform .3s ease;
+    /* Menu sale desde Arriba */
+    /* transform: translate(0, -100%); */
+    /* Menu sale desde Abajo */
+    /* transform: translate(0, 100%); */
+    /* Menu sale desde Derecha */
+    transform: translate(100%, 0);
+    /* Menu sale desde Izquierda */
+    /* transform: translate(-100%, 0);  */
+
+  }
+
+  .panel.is-active {
+    transform: translate(0, 0);
+  }
+
+  .panel-btn {
+    position: fixed;
+    z-index: 999;
+    bottom: 1vh;
+    right: 1vw;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--main-color);
+  }
+
+  .menu {
+    width: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+  }
+
+  .menu a {
+    padding: 2rem;
+    width: inherit;
+    display: block;
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: var(--main-color);
+    transition: all 0.3s ease;
+  }
+
+  .menu a:hover {
+    font-weight: bold;
+    color: var(--second-color);
+    background-color: var(--main-modal-color);
+  }
+
+  .scroll-top-btn {
+    position: fixed;
+    z-index: 999;
+    bottom: 1vh;
+    right: calc(4.25rem + 1vw);
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    font-size: 2rem;
+    font-weight: bold;
+    background-color: var(--main-color);
+    color: var(--second-color);
+    cursor: pointer;
+    outline: 0;
+    border: 0;
+    transition: all 0.3s ease-out;
+  }
+
+
+  h2 {
+    color: tomato;
+  }
+
+  div {
+    margin-left: 40%;
+    text-align: left;
+  }
+</style>
+<script>
+
+  const d = document,
+    w = window;
+
+  d.addEventListener("DOMContentLoaded", (e) => {
+    hamburgerMenu(".panel-btn", ".panel", ".menu a");
+    scrollTopButtom(".scroll-top-btn");
+  })
+
+  function hamburgerMenu(panelBtn, panel, menuLink) {
+
+    d.addEventListener("click", e => {
+      if (e.target.matches(panelBtn) || e.target.matches(`${panelBtn} * `)) {
+        d.querySelector(panel).classList.toggle("is-active");
+        d.querySelector(panelBtn).classList.toggle("is-active");
+      }
+      if (e.target.matches(menuLink)) {
+        d.querySelector(panel).classList.remove("is-active");
+        d.querySelector(panelBtn).classList.remove("is-active");
+      }
+    });
+  }
+
+  function scrollTopButtom(btn) {
+
+    const $scrollBtn = d.querySelector(btn);
+
+    w.addEventListener("scroll", (e) => {
+      let scrollTop = w.pageYOffset || d.documentElement.scrollTop;
+      if (scrollTop > 600) {
+        $scrollBtn.classList.remove("hidden");
+      } else {
+        $scrollBtn.classList.add("hidden");
+      }
+
+      //  console.log(w.pageYOffset, d.documentElement.scrollTop);
+
+    });
+
+    d.addEventListener("click", (e) => {
+      if (e.target.matches(btn)) {
+        w.scrollTo({
+          behavior: "smooth",
+          top: 0,
+          // left: 0
+        })
+      }
+    });
+
+  }
+
+</script>
+
+<body>
+  <header class="header">
+    <h1>Notas</h1>
+  </header>
+
+  <button class="panel-btn hamburger hamburger--vortex" type="button">
+    <span class="hamburger-box">
+      <span class="hamburger-inner"></span>
+    </span>
+  </button>
+
+  <aside class="panel">
+    <nav class="menu">
+      <a href="#seccion1">Sincronizar</a>
+      <a href="#seccion2">VPN</a>
+      <a href="#seccion3">Empresas</a>
+      <a href="#seccion4">Sección 4</a>
+      <a href="#seccion5">Sección 5</a>
+    </nav>
+  </aside>
+
+  <main>
+    <section id="seccion1" class="section">
+      <h2>Sincronizar</h2>
+      <div>
+        <b>usuario:</b> ventastbd <br>
+        <b>Contraseña:</b>tbd_tp_2016 <br>
+        <b>T.TFuego:</b> tbd_tdf_2019
+      </div><br>
+
+      <div>
+        <b>Use tb_caupolican</b><br>
+        Update paramlocal set sincronizando = 0<br>
+        Execute spSyncDatabase<br>
+      </div> <br>
+
+      <div>
+        <b>Use tb_trauco</b><br>
+        Update paramlocal set sincronizando = 0<br>
+        Execute spSyncDatabase<br>
+      </div> <br>
+
+      <div>
+        <b>Use tb_tehuelche</b><br>
+        Update paramlocal set sincronizando = 0<br>
+        Execute spSyncDatabase<br>
+      </div> <br>
+
+      <div>
+        <b>Use tb_olivia</b><br>
+        Update paramlocal set sincronizando = 0<br>
+        Execute spSyncDatabase<br>
+      </div> <br>
+
+      <div>
+        <b>Use tb_esteban</b><br>
+        Update paramlocal set sincronizando = 0<br>
+        Execute spSyncDatabase<br>
+      </div> <br>
+
+      <div>
+        <b>Use tb_llacolen</b><br>
+        Update paramlocal set sincronizando = 0<br>
+        Execute spSyncDatabase<br>
+      </div> <br>
+
+      <div>
+        <b>Use tb_federico</b><br>
+        Update paramlocal set sincronizando = 0<br>
+        Execute spSyncDatabase<br>
+      </div> <br>
+
+      <div>
+        <b>Use tb_tenten</b><br>
+        Update paramlocal set sincronizando = 0<br>
+        Execute spSyncDatabase<br>
+      </div> <br>
+
+      <div>
+        <b>Use tb_josefina</b><br>
+        Update paramlocal set sincronizando = 0<br>
+        Execute spSyncDatabase<br>
+      </div> <br>
+
+      <div>
+        <b>Use transb_ruende</b><br>
+        Update paramlocal set sincronizando = 0<br>
+        Execute spSyncDatabase<br>
+      </div> <br>
+
+      <div>
+        <b>Use transb_camahueto</b><br>
+        Update paramlocal set sincronizando = 0<br>
+        Execute spSyncDatabase<br>
+      </div> <br>
+
+      <div>
+        <b>Use transb_trehuaco</b><br>
+        Update paramlocal set sincronizando = 0<br>
+        Execute spSyncDatabase<br>
+      </div> <br>
+
+      <div>
+        <b>Use transb_eltrauco</b><br>
+        Update paramlocal set sincronizando = 0<br>
+        Execute spSyncDatabase<br>
+      </div> <br>
+
+      <div>
+        <b>Use tdf_tanu</b><br>
+        Update paramlocal set sincronizando = 0<br>
+        Execute spSyncDatabase<br>
+      </div> <br>
+
+      <div>
+        <b>Use tdf_kataik</b><br>
+        Update paramlocal set sincronizando = 0<br>
+        Execute spSyncDatabase<br>
+      </div> <br>
+
+    </section>
+    <section id="seccion2" class="section">
+      <h2>VPN</h2>
+      <div>
+        <b>
+          federico <br>
+          fdrceeio2016
+        </b><br>
+      </div><br>
+
+      <div>
+        <b>
+          dfelipe<br>
+          dflpeie2016
+        </b><br>
+      </div><br>
+
+      <div>
+        <b>
+          doliva <br>
+          dlvoia2016
+        </b><br>
+      </div><br>
+
+      <div>
+        <b>
+          tehuelche <br>
+          thlcheuee2016
+        </b><br>
+      </div><br>
+
+      <div>
+        <b>
+          Llacolen <br>
+          llclnaoe2016
+        </b><br>
+      </div><br>
+
+      <div>
+        <b>
+          desteban <br>
+          dstbneea2016
+        </b><br>
+      </div><br>
+
+      <div>
+        <b>
+          Caupolica <br>
+          cplcnauoia2016
+        </b><br>
+      </div><br>
+
+      <div>
+        <b>
+          tenten <br>
+          tntnee2016
+        </b><br>
+      </div><br>
+
+      <div>
+        <b>
+          jLeonor <br>
+          jlnreoo2016
+        </b><br>
+      </div><br>
+
+
+    </section>
+    <section id="seccion3" class="section">
+      <h2>Empresas</h2>
+      <div>CPT................: 83562400-5</div><br>
+      <div>CPT Inmoviliaria...: 76111623-1</div><br>
+      <div>CPT Wellboat.......: 96609320-K</div><br>
+      <div>CPT Remolcadores...: 76037572-1</div><br>
+      <div>Agental............: 80010900-0</div><br>
+      <div>NAUTILUS S.A.......: 76683622-4</div><br>
+      <div>TMC................: 84554900-1</div><br>
+      <div>Frasal.............: 76450970-6</div><br>
+      <div>Nasa...............: 99597800-8 </div><br>
+      <div>Transportes Austral: 76081597-7</div><br>
+      <div>SPQ................: 99535890-5</div><br>
+      <div>SALTEK.............: 96789700-0</div><br>
+      <div>Trasur.............: 76222078-4</div><br>
+      <div>Agental............: 80010900-0</div><br>
+      <div>Transportes Puelche: 76056867-8</div><br>
+      <div>Naviera Puelche....: 99550530-4</div><br>
+      <div>Transportes TTDF...: 77048238-0</div>
+
+    </section>
+
+    <section id="seccion4" class="section">
+      <h2>Sección 4</h2>
+    </section>
+    <section id="seccion5" class="section">
+      <h2>Sección 5</h2>
+    </section>
+  </main>
+  <button class="scroll-top-btn hidden">&#11014;</button>
+</body>
+
+</html>
