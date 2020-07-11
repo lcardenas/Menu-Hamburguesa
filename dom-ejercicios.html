@@ -35,6 +35,8 @@
       <a href="#seccion11" data-scroll-spy>Sorteo Digital</a>
       <a href="#seccion12" data-scroll-spy>Responsive Slider</a>
       <a href="#seccion13" data-scroll-spy>Video Inteligente</a>
+      <a href="#seccion14" data-scroll-spy>Validación de Formularios</a>
+      <a href="#seccion15" data-scroll-spy>Narrador</a>
     </nav>
   </aside>
 
@@ -222,6 +224,47 @@
       <video src="assets/video.mp4" muted controls loop data-smart-video></video>
     </section>
 
+    <section id="seccion14" class="section" data-scroll-spy>
+      <h2>Validación de Formularios</h2>
+      <!-- <form class="contact-form" action="https://formsubmit.co/lcardenas@cpt.cl" method="POST" target="_blank"> -->
+      <form class="contact-form">
+
+        <legend>Envianos tus Comentarios</legend>
+        <input type="text" name="name" placeholder="Ingresa tu Nombre"
+          title="Nombre solo acepta letras y espacios en blanco" pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$" required>
+        <input type="email" name="email" placeholder="Escribe tu Email" title="Email Incorrecto"
+          pattern="^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$" required>
+
+        <input type="text" name="subject" placeholder="Asunto a tratar" title="Asunto es requerido" required>
+        <textarea name="comments" cols="50" rows="5" placeholder="Escribe tuscomentarios"
+          title="Tu comentario no debe exeder los 255 caracteres" data-pattern="^.{1,255}$" required></textarea>
+
+        <input type="submit" value="Enviar">
+
+        <div class="contact-form-loader none">
+          <img src="assets/loader.svg" alt="Cargando">
+        </div>
+
+        <div class="contact-form-response none">
+          <p>Los datos han sido enviados</p>
+        </div>
+
+      </form>
+    </section>
+
+    <section id="seccion15" class="section" data-scroll-spy>
+
+      <h2>Narrador</h2>
+      <select id="speech-select">
+        <option value="">---- Elige una Voz -----</option>
+      </select>
+      <br><br>
+      <textarea id="speech-text" cols="50" rows="5" placeholder="ingresa text a leer"></textarea>
+      <br><br>
+
+      <button id="speech-btn">Leer Texto</button>
+
+    </section>
 
   </main>
 
