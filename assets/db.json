@@ -1,0 +1,86 @@
+{
+  "santos": [
+    {
+      "nombre": "Seiya",
+      "constelacion": "Pegaso",
+      "id": 1
+    },
+    {
+      "nombre": "Shiryu",
+      "constelacion": "Dragon",
+      "id": 2
+    },
+    {
+      "id": 3,
+      "nombre": "Hyoga",
+      "constelacion": "Cisne"
+    },
+    {
+      "id": 4,
+      "nombre": "Shun",
+      "constelacion": "Andromeda"
+    },
+    {
+      "id": 5,
+      "nombre": "Ikki",
+      "constelacion": "Fenix"
+    },
+    {
+      "nombre": "sagas",
+      "constelacion": "Geminis",
+      "id": 6
+    },
+    {
+      "nombre": "Mu",
+      "constelacion": "Aries",
+      "id": 7
+    },
+    {
+      "nombre": "Pipi",
+      "constelacion": "Pollo",
+      "id": 8
+    },
+    {
+      "nombre": "Manigoldo",
+      "constelacion": "Cancer",
+      "id": 9
+    },
+    {
+      "nombre": "Asmita",
+      "constelacion": "Virgo",
+      "id": 12
+    },
+    {
+      "nombre": "Chacota",
+      "constelacion": "Pingui",
+      "id": 13
+    }
+  ],
+  "dioses": [
+    {
+      "id": 1,
+      "nombre": "Athena",
+      "constelacion": "Tierra"
+    },
+    {
+      "id": 2,
+      "nombre": "Poseidon",
+      "constelacion": "Mar"
+    },
+    {
+      "id": 3,
+      "nombre": "Hades",
+      "constelacion": "Inframundo"
+    },
+    {
+      "id": 4,
+      "nombre": "Zeus",
+      "constelacion": "Cielo"
+    },
+    {
+      "id": 5,
+      "nombre": "Ares",
+      "constelacion": "Guerra"
+    }
+  ]
+}
